@@ -1,16 +1,18 @@
 function searchURL() {
 	var result = "";
+	var elementName = "";
 	
 	var possibleNames = new Array("player", "videoPlayer");
 	
 	for (var i = 0; i < possibleNames.length; i++) {
 		if (typeof document.getElementById(possibleNames[i]) == "function") {
 			result = document.getElementById(possibleNames[i]).GetVariable("file");
+			elementName = possibleNames[i];
 		}
 	}
 	
 	if (result != "" && result.search("/") == -1) {
-		result = getVideoURLWithAPI();
+		result = getVideoURLWithAPIFromElementNamed(elementName);
 		return;
 	}
 	
@@ -34,10 +36,10 @@ function searchURL() {
 	}
 }
 
-function getVideoURLWithAPI() {
-	var file = document.getElementById("videoPlayer").GetVariable("file");
-	var key = document.getElementById("videoPlayer").GetVariable("filekey");
-	var domain = document.getElementById("videoPlayer").GetVariable("domain");
+function getVideoURLWithAPIFromElementNamed(elementName) {
+	var file = document.getElementById(elementName).GetVariable("file");
+	var key = document.getElementById(elementName).GetVariable("filekey");
+	var domain = document.getElementById(elementName).GetVariable("domain");
 	var request = domain+"/api/player.api.php?user=undefined&pass=undefined&file="+file+"&key="+key;
 	
 	var r = window.confirm("You have to copy the url from this page:\n"+request+"\nIt's between 'url=' and '&title'\nDo you want to open the page?");
