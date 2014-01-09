@@ -17,7 +17,7 @@ function searchURL() {
 	}
 	
 	if (typeof flowplayer == "function") {
-		result = flowplayer().getConfig().clip.url;
+		result = flowplayer().getClip().completeUrl;
 	}
 	if (typeof jwplayer == "function") {
 		result = jwplayer().config.file;
