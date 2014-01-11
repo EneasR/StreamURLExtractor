@@ -17,7 +17,11 @@ function searchURL() {
 	}
 	
 	if (typeof flowplayer == "function") {
-		result = flowplayer().getClip().completeUrl;
+		if (typeof flowplayer().getClip().completeUrl == "object") {
+			result = flowplayer().getClip().completeUrl;
+		} else {
+			result = flowplayer().getConfig().clip.url;
+		}
 	}
 	if (typeof jwplayer == "function") {
 		result = jwplayer().config.file;
