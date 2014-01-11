@@ -17,7 +17,7 @@ function searchURL() {
 	}
 	
 	if (typeof flowplayer == "function") {
-		if (typeof flowplayer().getClip().completeUrl == "object") {
+		if (typeof flowplayer().getClip() == "function") {
 			result = flowplayer().getClip().completeUrl;
 		} else {
 			result = flowplayer().getConfig().clip.url;
